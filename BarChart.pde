@@ -45,7 +45,7 @@ class BarChart {
         bars[i] = bar;
         /* try rotating text */
         pushMatrix();
-        translate(x, y + barHeight); //change origin 
+        translate(x + (textAscent() + textDescent()), y + barHeight); //change origin 
         rotate(PI/2); //rotate around new origin 
         fill(0);
         text(" " + this.data[i], 0, 0); //put text at new origin 
