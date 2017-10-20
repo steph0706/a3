@@ -1,5 +1,5 @@
 String inFile;
-Chart barChart;
+BarChart barChart;
 String[] times;
 float [] values;
 String[] headers;
@@ -10,13 +10,15 @@ void setup() {
   surface.setResizable(true);
   parseData();
   println(times.length, values.length);
-  pc = new PieChart(times, values);
+  //pc = new PieChart(times, values);
+  barChart = new BarChart(headers[0], headers[1], times, values);
 }
 
 void draw() {
   background(255, 255, 255); 
 
-  pc.draw();
+  //pc.draw();
+  barChart.render();
 }
 
 void parseData() {

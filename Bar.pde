@@ -1,52 +1,38 @@
- class Button1 {
-  color C1, C2, currC;
+ class Bar {
+  color c1, c2, currColor;
   color[] colours;
-  String[] text;
-  String T1, T2, currT;
-  int w, h, cx, cy, currState, currWidth, currHeight, numStates, currDiv;
+  String name;
+  float value;
+  float x, y;
+  float w, h;
   
   
-  Button1(int width, int height, String[] initText, int x, int y) {
-       
-    w = width;
-    h = height;
-    cx = x;
-    cy = y;
+  Bar(float w, float h, String name, float x, float y) {
+    this.name = name;   
+    this.w = w;
+    this.h = h;
+    this.x = x;
+    this.y = y;
+    c1 = color(158, 220, 229);
+    c2 = color(55, 206, 229);
+    currColor = c1; 
 
-    currC = colours[currState];
-    currT = text[currState];
   }
   
-  void drawButton() {
-    //rectMode(CENTER);
-    fill(currC);
-    rect(cx, cy - height, width, height); 
-    //rect(cx, cy, currWidth, currHeight);
-    fill(0, 0, 0);
-    //textAlign(CENTER);
-    //text(currT, cx, cy);
+  void drawBar() {
+    if (intersect()) {
+      currColor = c2;
+    } else {
+      currColor = c1;
+    }
+    stroke(0);
+    fill(currColor);
+    rect(x, y, w, h);
   }
-  
-  void updateState() {
-    //int temp = currState % numStates;
-    //currC = colours[temp];
-    //currT = text[temp];
-    //if (temp == 0) {
-    //  currDiv = 2;
-    //} else {
-    //  currDiv++;
-    //}
-   
-    //currWidth = w/currDiv;
-    //currHeight = h/currDiv;
     
-    //currState++;
-
-  }
-  
-  boolean intersectButton(int x, int y) {
-    if (x > cx - width/2 && x < cx + width/2 && 
-          y > cy - height/2 && y < cy + height/2) {
+  boolean intersect() {
+    if (mouseX >= this.x && mouseX <= this.w + this.x && 
+          mouseY > this.y  && mouseY < this.y + this.h) {
       return true;
     } else {
       return false;
