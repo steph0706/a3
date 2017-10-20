@@ -1,20 +1,19 @@
 class Pie {
   String name;
-  int value, x, y;
+  float value;
+  int x, y;
   float diameter, angle1, angle2;
   color c1, c2, currColor;
-  boolean ifPie;
   
-  Pie(String name, int value, float startA, float endA, float diameter, boolean ifPie) {
+  Pie(String name, float value, float startA, float endA, float diameter) {
     this.name = name;
     this.value = value;
     this.angle1 = startA;
     this.angle2 = endA;
     this.diameter = diameter;
-    c1 = color(169, 134, 214);
-    c2 = color(125, 92, 168);
+    c1 = color(158, 220, 229);
+    c2 = color(55, 206, 229);
     currColor = c1; 
-    this.ifPie = ifPie;
   }
   
   void drawPie() {
@@ -37,11 +36,6 @@ class Pie {
     if (distFromCenter > diameter/2) {
       return false;
     } else {
-       if (ifPie == false){
-         if (distFromCenter < diameter/4){
-           return false;
-         }
-       }
        float y1 = mouseY - cY ;
        float x1 = mouseX - cX;
        float ang = atan2(y1,x1);
@@ -53,19 +47,18 @@ class Pie {
   }
   
   void hoverText(float mx, float my){
-    float padding = 10;
-    fill(190, 219, 219);
+    float padding = 3;
+    String text = name + ", " + str(value);
+    float textW = textWidth(text) + 2*padding;
+    float boxH = textAscent() + textDescent() + 2*padding;
+    float boxX = mouseX;
+    float boxY = mouseY - boxH - padding;
+    fill (190, 219, 219);
     strokeWeight(0);
-    float textSize = diameter/20;
-    textSize(textSize);
-    textAlign(CENTER,TOP);
-    float textBoxWidth = (float)(name.length())*textSize*0.6;
-    rect(mx+padding, my+padding, textBoxWidth, textSize*1.2);
-    fill(54, 63, 63);
-    text(name + ", " + str(value), mx + padding+textBoxWidth/2, my+padding);
+    
+    rect(boxX, boxY, textW, boxH);
+    fill(0);
+    text(text, boxX + padding, boxY + (textAscent() + textDescent()));
+
   }
-
-
-
-
 }

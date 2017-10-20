@@ -1,20 +1,20 @@
 
-class MyChart {
+class Chart {
   String xTitle, yTitle; 
-  String[] names;
-  int[] values;
-  int yMin, yMax, xNum; 
+  String[] days;
+  float[] values;
+  float yMin, yMax, xNum; 
   float padding = 0.15; 
   float barFill = 0.8; 
 
-  MyChart(String xTitle, String yTitle, String[] names, int[] values) {
+  Chart(String xTitle, String yTitle, String[] days, float [] values) {
     this.xTitle = xTitle;
     this.yTitle = yTitle;
-    this.names = names;
+    this.days = days;
     this.values = values;
     this.yMin = min(values);
     this.yMax = max(values); 
-    this.xNum = names.length; 
+    this.xNum = days.length; 
   }
 
   void render(float xPos, float yPos) {
@@ -42,7 +42,7 @@ class MyChart {
         translate(x, y); //change origin 
         rotate(PI/2); //rotate around new origin 
         fill(0);
-        text(" " + names[i], 0, 0); //put text at new origin 
+        text(" " + days[i], 0, 0); //put text at new origin 
         popMatrix();
         /* end rotate text */
         
@@ -51,7 +51,7 @@ class MyChart {
         if (xPos >= x && xPos <= x + barWidth 
                       && yPos >= y - barHeight && yPos <= y) {
          fill(0, 255, 0); 
-         text(names[i], 0, 0);
+         text(days[i], 0, 0);
         } else {
           fill(color(0, 0, 255)); 
         }
