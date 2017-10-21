@@ -1,8 +1,8 @@
 
-class BarChart {
+class LineChart {
   String[] names;
   float[] data;
-  Bar [] bars;
+  Point [] points;
   String xTitle, yTitle; 
   float yMin, yMax; 
   int xNum;
@@ -15,7 +15,7 @@ class BarChart {
   float ySpacing;  
 
 
-  BarChart(String xTitle, String yTitle, String[] days, float [] values) {
+  LineChart(String xTitle, String yTitle, String[] days, float [] values) {
     this.xTitle = xTitle;
     this.yTitle = yTitle;
     this.names = days;
@@ -23,7 +23,7 @@ class BarChart {
     this.yMin = min(values);
     this.yMax = max(values); 
     this.xNum = days.length; 
-    bars = new Bar[this.xNum];
+    points = new Point[this.xNum];
     this.spacing = (width - 2 * xMargin)/xNum; 
     this.barWidth = this.barFill * spacing;
   }
@@ -44,36 +44,33 @@ class BarChart {
         float barHeight = this.data[i] * ySpacing; 
         x = xStart + this.spacing * i; 
         y = (yAxisLen - barHeight) + yMargin;
-        Bar bar = new Bar(this.barWidth, barHeight, names[i], x, y);
-        bar.drawBar();
-        bars[i] = bar;
+        Point pnt = new Point(x + 10, y, this.names[i]);
+        points[i] = pnt;
+        /* try rotating text */
+        //pushMatrix();
+        //translate(x + 10, y + barHeight); //change origin 
+        //rotate(PI/2); //rotate around new origin 
+        //fill(0);
+        //text(" " + this.names[i], 0, 0); //put text at new origin 
+        //popMatrix();
+        /* end rotate text */
         
-        if (bar.intersect()) {
-         fill(0, 255, 0); 
-         text(this.names[i], 0, 0);
+        if (pnt.intersect()) {
+         stroke(color(158, 220, 229)); 
+         text(this.data[i], mouseX + 10, mouseY + 10);
         } else {
-          fill(color(0, 0, 255)); 
-        }        
+          stroke(color(55, 206, 229)); 
+        }  
+        
+        pnt.drawPoint();
+
     }
   
   //drawAxes();
+  drawLines();
   }
   
 void drawAxes(){
-       for(int i = 0; i < data.length; i++){
-        float x, y; 
-        float barHeight = this.data[i] * ySpacing; 
-        x = xMargin + this.spacing * i; 
-        y = (yAxisLen - barHeight) + yMargin;
-        /* try rotating text */
-        pushMatrix();
-        translate(x + 5, y + barHeight); //change origin 
-        rotate(PI/2); //rotate around new origin 
-        fill(0);
-        text(" " + this.names[i], 0, 0); //put text at new origin 
-        popMatrix();
-        /* end rotate text */
-     }
     strokeWeight(1);
     stroke(0);
     fill(0); 
@@ -88,13 +85,12 @@ void drawAxes(){
       text(val, xMargin - 60, currY); 
     }
   }
-
-  void drawGraph(){
-     for(Bar bar : bars){
-        bar.drawBar(); 
-     }
-    
-     //drawAxes();
-
-  }
+  
+  void drawLines(){
+    for(int i = 0; i < points.length -1; i++){
+      stroke(color(0, 0,0)); 
+      strokeWeight(1);
+      line(points[i].x, points[i].y, points[i+1].x, points[i+1].y);
+    }
+}
 }

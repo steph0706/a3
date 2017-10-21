@@ -38,4 +38,12 @@
       return false;
     }
   }
+  
+  void changeHeight(float change) {
+    this.h += change;
+  }
+  
+  void changeWidth(float change) {
+   this.w += change;
+  }
 }
