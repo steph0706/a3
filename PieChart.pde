@@ -25,7 +25,7 @@ class PieChart {
     for (int i = 0; i < data.length; i++) {
       float p = (data[i]/sum) * 360;
       p = radians(p);
-      radius = min(width, height) * 0.7;
+      radius = 2 * (height * 0.9) / TWO_PI; 
       Pie pie = new Pie(names[i], data[i], currAngle, currAngle + p, radius);
       pie.drawPie();
       pies[i] = pie;

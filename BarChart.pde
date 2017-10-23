@@ -74,6 +74,7 @@ void drawAxes(){
         popMatrix();
         /* end rotate text */
      }
+     
     strokeWeight(1);
     stroke(0);
     fill(0); 

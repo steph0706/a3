@@ -22,8 +22,8 @@ class Pie {
     } else {
       currColor = c1;
     }
-    strokeWeight(2);
-    stroke(255);
+    strokeWeight(1);
+    stroke(0);
     ellipseMode(CENTER);
     fill(currColor);
     arc(width/2, height/2, diameter, diameter, angle1, angle2, PIE);

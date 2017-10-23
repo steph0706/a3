@@ -24,19 +24,12 @@ float weight = 1;
 void draw() {
   background(255, 255, 255); 
 
-  //pc.draw();
-   if(!anim.doneWithBars()){
-     anim.bc.drawGraph();
-     //if(!anim.doneB2L()){
-     //   anim.bc.drawAxes();
-     //}
-   }
-   anim.bc.drawAxes();
-   //else if(!anim.doneB2L()) anim.bc.drawAxes();
-
-   anim.b2l();
-   
-
+   //if(!anim.doneWithBars()){
+   //  anim.bc.drawGraph();
+   //}
+   //anim.bc.drawAxes();
+   if (!anim.needToDrawArcs)anim.bc.drawGraph();
+   anim.b2p();
   //lineChart.render();  
 }
 
