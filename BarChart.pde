@@ -27,9 +27,8 @@ class BarChart {
     this.spacing = (width - 2 * xMargin)/xNum; 
     this.barWidth = this.barFill * spacing;
   }
-
-  void render() { 
-    
+  
+  void calcStuff() {
     xAxisLen = (width - 2 * xMargin);
     yAxisLen = (height - 2 * yMargin);
     //spacing 
@@ -44,11 +43,17 @@ class BarChart {
         float barHeight = this.data[i] * ySpacing; 
         x = xStart + this.spacing * i; 
         y = (yAxisLen - barHeight) + yMargin;
-        Bar bar = new Bar(this.barWidth, barHeight, names[i], x, y);
-        bar.drawBar();
-        bars[i] = bar;
-        
-        if (bar.intersect()) {
+        Bar bar = new Bar(this.barWidth, barHeight, names[i], x, y, data[i]);
+        bars[i] = bar;   
+    }
+    
+    
+  }
+
+  void render() { 
+    for (int i = 0; i < bars.length; i++) {
+        bars[i].drawBar();
+        if (bars[i].intersect()) {
          fill(0, 255, 0); 
          text(this.names[i], 0, 0);
         } else {
@@ -56,7 +61,6 @@ class BarChart {
         }        
     }
   
-  //drawAxes();
   }
   
 void drawAxes(){

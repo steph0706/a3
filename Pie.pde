@@ -15,7 +15,9 @@ class Pie {
     c2 = color(55, 206, 229);
     currColor = c1; 
   }
-  
+  void setColor(color c) {
+    this.c1 = c; 
+  }
   void drawPie() {
     if (intersect()) {
       currColor = c2;

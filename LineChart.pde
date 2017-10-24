@@ -28,8 +28,7 @@ class LineChart {
     this.barWidth = this.barFill * spacing;
   }
 
-  void render() { 
-    
+  void calcStuff(){
     xAxisLen = (width - 2 * xMargin);
     yAxisLen = (height - 2 * yMargin);
     //spacing 
@@ -54,20 +53,32 @@ class LineChart {
         //text(" " + this.names[i], 0, 0); //put text at new origin 
         //popMatrix();
         /* end rotate text */
-        
+       
+    }
+  }
+  
+  void render() { 
+      drawLines();
+
+    for (int i = 0; i < xNum; i++) {
+         stroke(color(55, 206, 229)); 
+         fill(0);
+
+        points[i].drawPoint();
+    }
+    
+    for(int i = 0; i < xNum; i++) {
+       Point pnt = points[i];
         if (pnt.intersect()) {
          stroke(color(158, 220, 229)); 
+         fill(0);
          text(this.data[i], mouseX + 10, mouseY + 10);
         } else {
           stroke(color(55, 206, 229)); 
-        }  
-        
-        pnt.drawPoint();
-
+        }   
     }
   
   //drawAxes();
-  drawLines();
   }
   
 void drawAxes(){

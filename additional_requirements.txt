@@ -1,0 +1,1 @@
+First off, we included color and hovering during the transitions to encode seperation of data better. This also retains the "x" values of the bar chart when transitioning into the pie chart and vice versa. Moreover, we included nostalgic Digimon evolution to inform millenial users that their chart is about to evolve into a more epic chart.

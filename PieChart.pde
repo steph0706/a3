@@ -8,15 +8,17 @@ class PieChart {
     this.names = names;
     this.data = data;    
     pies = new Pie[names.length];
+     calcPie(); 
   }
   
   void draw() {
-   calcPie(); 
    for(Pie p: pies){
-     if (p.intersect()){
-       p.hoverText(mouseX, mouseY);
-     }
-    }
+     p.drawPie();
+   }
+   
+   for (Pie p : pies) {
+    if (p.intersect()) p.hoverText(mouseX, mouseY); 
+   }
 }
   
   void calcPie() {
@@ -27,7 +29,6 @@ class PieChart {
       p = radians(p);
       radius = 2 * (height * 0.9) / TWO_PI; 
       Pie pie = new Pie(names[i], data[i], currAngle, currAngle + p, radius);
-      pie.drawPie();
       pies[i] = pie;
       currAngle += p;
     }
